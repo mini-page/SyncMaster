@@ -110,10 +110,10 @@
             )
             
             # A URL to the license for this module
-            LicenseUri = 'https://github.com/yourusername/SyncMaster/blob/main/LICENSE'
+            LicenseUri = 'https://github.com/mini-page/SyncMaster/blob/main/LICENSE'
             
             # A URL to the main website for this project
-            ProjectUri = 'https://github.com/yourusername/SyncMaster'
+            ProjectUri = 'https://github.com/mini-page/SyncMaster'
             
             # A URL to an icon representing this module
             # IconUri = ''
