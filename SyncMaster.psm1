@@ -86,7 +86,7 @@ function Get-LocalFolders {
 function Show-MainMenu {
     Clear-Host
     Write-Host "╔════════════════════════════════════════════════════════╗" -ForegroundColor Cyan
-    Write-Host "║           SYNCMASTER - File Sync Manager              ║" -ForegroundColor Cyan
+    Write-Host "║           SYNCMASTER - File Sync Manager               ║" -ForegroundColor Cyan
     Write-Host "╚════════════════════════════════════════════════════════╝" -ForegroundColor Cyan
     Write-Host ""
     Write-Host "  [1] Quick Sync (One-Way: PC → USB)" -ForegroundColor Green
@@ -107,8 +107,10 @@ function Show-DetectedDrives {
         Write-Host "   ⚠ No removable drives detected!" -ForegroundColor Yellow
         return $null
     }
-    $drives | Format-Table -AutoSize
-    return $drives
+    
+    $selectedDrive = $drives | Out-GridView -Title "Select a drive" -PassThru
+    
+    return $selectedDrive
 }
 
 function Show-QuickFolders {
@@ -374,8 +376,8 @@ function Start-SyncMasterUI {
                 Clear-Host
                 Write-Host "═══ QUICK SYNC (One-Way) ═══`n" -ForegroundColor Green
                 
-                $drives = Show-DetectedDrives
-                if (-not $drives) { Read-Host "Press Enter"; continue }
+                $selectedDrive = Show-DetectedDrives
+                if (-not $selectedDrive) { Read-Host "Press Enter"; continue }
                 
                 $folders = Show-QuickFolders
                 $folderChoice = Read-Host "`nSelect source folder (1-$($folders.Count) or C for custom)"
@@ -387,13 +389,13 @@ function Start-SyncMasterUI {
                     $source = $folders[$idx].Path
                 }
                 
-                $destDrive = Read-Host "Enter destination drive letter (e.g., E)"
+                $destDrive = $selectedDrive.Letter
                 $destFolder = Read-Host "Enter destination folder name (or press Enter for root)"
                 
                 if ($destFolder) {
-                    $destination = "${destDrive}:\$destFolder"
+                    $destination = Join-Path -Path $destDrive -ChildPath $destFolder
                 } else {
-                    $destination = "${destDrive}:\"
+                    $destination = $destDrive
                 }
                 
                 $preview = Read-Host "`nRun preview first? (y/n)"
