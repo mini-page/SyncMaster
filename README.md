@@ -313,8 +313,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-- **Issues**: [GitHub Issues](https://github.com/yourusername/SyncMaster/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/SyncMaster/discussions)
+- **Issues**: [GitHub Issues](https://github.com/mini-page/SyncMaster/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/mini-page/SyncMaster/discussions)
 
 ## 🗺️ Roadmap
 
